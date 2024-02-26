@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AlertMessage from './AlertMessage';
 import FilePreview from './FilePreview';
 
-const UploadForm = () => {
+const UploadForm = ( { uploadFileClicked } ) => {
 
     const [file, setFile] = useState();
     const [errorMessage, setErrorMessage] = useState();
@@ -18,10 +18,10 @@ const UploadForm = () => {
     }
 
 
-    const removeFile = (e) => {
+    const removeFile = ( e ) => {
         e.preventDefault();
-        setFile(null);
-    }    
+        setFile( null );
+    }
 
     return (
         <div className='text-center flex flex-col justify-center items-center'>
@@ -46,9 +46,14 @@ const UploadForm = () => {
                 </label>
             </div>
             { errorMessage ? <AlertMessage msg={ errorMessage } /> : null }
-            <button disabled={ !file } className='p-2 bg-primary text-white w-full lg:w-1/6 rounded-full mt-5 disabled:bg-gray-500'>Upload</button>
+            <button
+                disabled={ !file }
+                className='p-2 bg-primary text-white w-full lg:w-1/6 rounded-full mt-5 disabled:bg-gray-500'
+                onClick={ () => uploadFileClicked( file ) }>
+                Upload
+            </button>
         </div>
     )
 }
 
-export default UploadForm
+export default UploadForm 
