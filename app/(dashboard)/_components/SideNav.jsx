@@ -31,8 +31,8 @@ function SideNav() {
 
     return (
         <div className='shadow-sm border-r h-full'>
-            <div className='p-5 border-b'>
-                <Image src='/CloudShare.svg' width={ 90 } height={ 90 } />
+            <div className='p-5 border-b text-center'>
+            <Image src='/CloudShare.png' width={ 150 } height={ 60 } />
             </div>
             <div className='flex flex-col float-left w-full'>
                 { menuList.map( ( item, index ) => (

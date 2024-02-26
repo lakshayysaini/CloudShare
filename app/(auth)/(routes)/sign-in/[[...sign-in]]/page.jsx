@@ -15,7 +15,7 @@ export default function Page() {
                     <div className="hidden lg:relative lg:block lg:p-12">
                         <a className="block text-white" href="#">
                             <span className="sr-only">Home</span>
-                            <Image src='/CloudShare.svg' width={ 90 } height={ 90 } />
+                            <Image src='/CloudShare.png' width={ 100 } height={ 50 } />
                         </a>
 
                         <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
@@ -38,7 +38,7 @@ export default function Page() {
                                 href="#"
                             >
                                 <span className="sr-only">Home</span>
-                                <Image src='/CloudShare.svg' width={ 90 } height={ 90 } />
+                                <Image src='/CloudShare.png' width={ 150 } height={ 60 } />
                             </a>
 
                             <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">

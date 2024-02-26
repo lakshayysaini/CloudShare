@@ -14,7 +14,7 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>*/}
-            <Image src='/CloudShare.svg' width={90} height={90}/>
+            <Image src='/CloudShare.png' width={ 150 } height={ 60 } />
           </a>
 
           <div className="flex flex-1 items-center justify-end md:justify-between">
