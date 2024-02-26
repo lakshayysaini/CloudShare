@@ -18,19 +18,19 @@ const UploadForm = () => {
     }
 
 
-    const removeFile = ( e ) => {
-        e.stopPropagation();
-        setFile( null )
-    }
+    const removeFile = (e) => {
+        e.preventDefault();
+        setFile(null);
+    }    
 
     return (
         <div className='text-center flex flex-col justify-center items-center'>
             <div className="flex items-center justify-center w-full">
-                <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-lg cursor-pointer bg-white hover:bg-gray-200">
+                <label for="dropzone-file" className={ `flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-lg cursor-pointer bg-white ${ !file ? 'hover:bg-gray-200' : '' }` }>
                     {
                         file
                             ?
-                            <FilePreview file={ file } removeFile={ () => removeFile( e.target. ) } />
+                            <FilePreview file={ file } removeFile={ removeFile } />
                             :
                             <>
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
