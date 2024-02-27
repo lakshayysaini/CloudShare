@@ -11,7 +11,7 @@ const Hero = () => {
                     </h1>
 
                     <p className="mt-4 sm:text-xl/relaxed text-gray-500">
-                        {Constant.desc}
+                    Effortless file sharing, secure encryption, and email sharing made <span className='text-primary'>SIMPLE</span>
                     </p>
 
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
