@@ -38,7 +38,7 @@ export default function Page() {
                                 href="#"
                             >
                                 <span className="sr-only">Home</span>
-                                <Image src='/CloudShare.png' width={ 150 } height={ 60 } />
+                                <Image src='/CloudShare.png' width={ 125 } height={ 50 } />
                             </a>
 
                             <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">

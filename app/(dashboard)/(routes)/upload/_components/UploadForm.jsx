@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import AlertMessage from './AlertMessage';
 import FilePreview from './FilePreview';
+import ProgressBarPercentage from './ProgressBar';
 
-const UploadForm = ( { uploadFileClicked } ) => {
+const UploadForm = ( { uploadFileClicked, progress } ) => {
 
     const [file, setFile] = useState();
     const [errorMessage, setErrorMessage] = useState();
@@ -45,13 +46,25 @@ const UploadForm = ( { uploadFileClicked } ) => {
                     }
                 </label>
             </div>
-            { errorMessage ? <AlertMessage msg={ errorMessage } /> : null }
-            <button
-                disabled={ !file }
-                className='p-2 bg-primary text-white w-full lg:w-1/6 rounded-full mt-5 disabled:bg-gray-500'
-                onClick={ () => uploadFileClicked( file ) }>
-                Upload
-            </button>
+            {
+                errorMessage
+                    ?
+                    <AlertMessage msg={ errorMessage } />
+                    :
+                    null
+            }
+
+            {
+                progress > 0 ?
+                    <ProgressBarPercentage progress={ progress } />
+                    :
+                    <button
+                        disabled={ !file }
+                        className='p-2 bg-primary text-white w-full lg:w-1/6 rounded-full mt-5 disabled:bg-gray-500'
+                        onClick={ () => uploadFileClicked( file ) }>
+                        Upload
+                    </button>
+            }
         </div>
     )
 }
