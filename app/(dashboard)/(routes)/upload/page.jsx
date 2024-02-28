@@ -4,11 +4,31 @@ import React, { useState } from 'react'
 import UploadForm from './_components/UploadForm';
 import { app } from '@/firebaseConfig';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { useUser } from '@clerk/nextjs';
+import { generateRandomString } from '@/app/_utils/GenerateRandomString';
 
 const Upload = () => {
 
+  const { user } = useUser();
   const storage = getStorage( app );
   const [progress, setProgress] = useState();
+  const db = getFirestore( app );
+
+  const saveInfo = async ( file, fileUrl ) => {
+    const docId = Date.now().toString();
+
+    await setDoc( doc( db, "uploadedFile", docId ), {
+      fileName: file.name,
+      fileSize: file.size,
+      fileType: file.type,
+      fileUrl: fileUrl,
+      userEmail: user.primaryEmailAddress.emailAddress,
+      userName: user.fullName,
+      password: '',
+      shortUrl: process.env.NEXT_PUBLIC_BASE_URL + generateRandomString()
+    } );
+  }
 
   const uploadFile = ( file ) => {
 
@@ -23,11 +43,12 @@ const Upload = () => {
       ( snapshot ) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progressPercentage = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
-        setProgress(Math.round(progressPercentage));
+        setProgress( Math.round( progressPercentage ) );
         console.log( 'Upload is ' + progressPercentage + '% done' );
 
         progressPercentage === 100 && getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
           console.log( 'File available at', downloadURL );
+          saveInfo( file, downloadURL );
         } );
       } )
   }
