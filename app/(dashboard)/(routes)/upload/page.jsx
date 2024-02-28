@@ -16,7 +16,8 @@ const Upload = () => {
   const db = getFirestore( app );
 
   const saveInfo = async ( file, fileUrl ) => {
-    const docId = Date.now().toString();
+    const docId = generateRandomString().toString().trim();
+    const shortUrl = process.env.NEXT_PUBLIC_BASE_URL + docId;
 
     await setDoc( doc( db, "uploadedFile", docId ), {
       fileName: file.name,
@@ -26,7 +27,8 @@ const Upload = () => {
       userEmail: user.primaryEmailAddress.emailAddress,
       userName: user.fullName,
       password: '',
-      shortUrl: process.env.NEXT_PUBLIC_BASE_URL + generateRandomString()
+      id: docId,
+      shortUrl: shortUrl.trim(),
     } );
   }
 
