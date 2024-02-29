@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AlertMessage from './AlertMessage';
 import FilePreview from './FilePreview';
 import ProgressBarPercentage from './ProgressBar';
+import UploadSucess from './UploadSucess';
 
-const UploadForm = ( { uploadFileClicked, progress } ) => {
+const UploadForm = ( { uploadFileClicked, progress, uploadCompleted } ) => {
 
     const [file, setFile] = useState();
     const [errorMessage, setErrorMessage] = useState();
+    const [isProgressBar, setIsProgressBar] = useState( progress );
+    const [isRemovealert, setIsRemoveAlert] = useState( false );
+
+    useEffect( () => {
+        setIsProgressBar( progress );
+        if ( progress === 100 ) {
+            setIsRemoveAlert( true );
+        }
+    }, [progress] )
 
     const onFileSelect = ( file ) => {
         console.log( file )
@@ -22,10 +32,21 @@ const UploadForm = ( { uploadFileClicked, progress } ) => {
     const removeFile = ( e ) => {
         e.preventDefault();
         setFile( null );
+        setIsProgressBar( 0 );
+    }
+
+    const removeAlert = ( e ) => {
+        e.preventDefault();
+        setIsRemoveAlert( false );
     }
 
     return (
         <div className='text-center flex flex-col justify-center items-center'>
+            {
+                isRemovealert ?
+                    <UploadSucess heading="Yayyy! 🚀 Upload Successful" removeAlert={ removeAlert } />
+                    : null
+            }
             <div className="flex items-center justify-center w-full">
                 <label for="dropzone-file" className={ `flex flex-col items-center justify-center w-full h-64 border-2 border-blue-300 border-dashed rounded-lg cursor-pointer bg-white ${ !file ? 'hover:bg-gray-200' : '' }` }>
                     {
@@ -55,7 +76,7 @@ const UploadForm = ( { uploadFileClicked, progress } ) => {
             }
 
             {
-                progress > 0 ?
+                progress > 0 && isProgressBar > 0 ?
                     <ProgressBarPercentage progress={ progress } />
                     :
                     <button

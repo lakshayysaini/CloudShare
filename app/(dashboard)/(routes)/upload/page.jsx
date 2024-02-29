@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadForm from './_components/UploadForm';
 import { app } from '@/firebaseConfig';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useUser } from '@clerk/nextjs';
 import { generateRandomString } from '@/app/_utils/GenerateRandomString';
+import { useRouter } from 'next/navigation';
 
 const Upload = () => {
 
@@ -14,9 +15,13 @@ const Upload = () => {
   const storage = getStorage( app );
   const [progress, setProgress] = useState();
   const db = getFirestore( app );
+  const router = useRouter();
+  const docId = generateRandomString().toString().trim();
+  const [uploadCompleted, setUploadCompleted] = useState( false );
+
+  console.log()
 
   const saveInfo = async ( file, fileUrl ) => {
-    const docId = generateRandomString().toString().trim();
     const shortUrl = process.env.NEXT_PUBLIC_BASE_URL + docId;
 
     await setDoc( doc( db, "uploadedFile", docId ), {
@@ -33,11 +38,6 @@ const Upload = () => {
   }
 
   const uploadFile = ( file ) => {
-
-    const metadata = {
-      contentType: file.type
-    };
-
     const imageRef = ref( storage, 'file-upload/' + file?.name );
     const uploadTask = uploadBytesResumable( imageRef, file, file.type );
 
@@ -52,13 +52,23 @@ const Upload = () => {
           console.log( 'File available at', downloadURL );
           saveInfo( file, downloadURL );
         } );
+
+        progressPercentage == 100 && setUploadCompleted( true )
       } )
   }
+
+  useEffect( () => {
+    uploadCompleted &&
+      setTimeout( () => {
+        router.push( '/file-preview/' + docId )
+      }, 5000 )
+  }, [progress === 100] )
 
   return (
     <div className='p-5 px-8 md:px-28'>
       <h2 className='text-[20px] text-center m-5'>Start <strong className='text-primary'>Uploading</strong> Your <strong className='text-primary'>File</strong> and <strong className='text-primary'>Share</strong> Them.</h2>
-      <UploadForm uploadFileClicked={ ( file ) => uploadFile( file ) } progress={ progress } />
+      <UploadForm uploadFileClicked={ ( file ) => uploadFile( file ) } progress={ progress } uploadCompleted={ uploadCompleted } />
+
     </div>
   )
 }
