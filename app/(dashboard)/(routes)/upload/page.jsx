@@ -16,12 +16,12 @@ const Upload = () => {
   const [progress, setProgress] = useState();
   const db = getFirestore( app );
   const router = useRouter();
-  const docId = generateRandomString().toString().trim();
   const [uploadCompleted, setUploadCompleted] = useState( false );
-
-  console.log()
+  const [documentId, setDocumentId] = useState();
 
   const saveInfo = async ( file, fileUrl ) => {
+    const docId = generateRandomString().toString().trim();
+    setDocumentId( docId );
     const shortUrl = process.env.NEXT_PUBLIC_BASE_URL + docId;
 
     await setDoc( doc( db, "uploadedFile", docId ), {
@@ -58,17 +58,18 @@ const Upload = () => {
   }
 
   useEffect( () => {
-    uploadCompleted &&
+    if ( uploadCompleted ) {
       setTimeout( () => {
-        router.push( '/file-preview/' + docId )
-      }, 5000 )
-  }, [progress === 100] )
+        router.push( '/file-preview/' + documentId );
+      }, 5000 );
+    }
+  }, [uploadCompleted, documentId] );
+
 
   return (
     <div className='p-5 px-8 md:px-28'>
       <h2 className='text-[20px] text-center m-5'>Start <strong className='text-primary'>Uploading</strong> Your <strong className='text-primary'>File</strong> and <strong className='text-primary'>Share</strong> Them.</h2>
-      <UploadForm uploadFileClicked={ ( file ) => uploadFile( file ) } progress={ progress } uploadCompleted={ uploadCompleted } />
-
+      <UploadForm uploadFileClicked={ ( file ) => uploadFile( file ) } progress={ progress } />
     </div>
   )
 }

@@ -4,7 +4,7 @@ import FilePreview from './FilePreview';
 import ProgressBarPercentage from './ProgressBar';
 import UploadSucess from './UploadSucess';
 
-const UploadForm = ( { uploadFileClicked, progress, uploadCompleted } ) => {
+const UploadForm = ( { uploadFileClicked, progress } ) => {
 
     const [file, setFile] = useState();
     const [errorMessage, setErrorMessage] = useState();
