@@ -5,6 +5,7 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { app } from '@/firebaseConfig';
 import Link from 'next/link';
 import { ArrowLeftSquare } from 'lucide-react';
+import FileInfo from './_components/FileInfo';
 
 const FilePreview = ( { params } ) => {
     const db = getFirestore( app );
@@ -32,8 +33,8 @@ const FilePreview = ( { params } ) => {
             <Link href='/upload' className='glex-gap-3'>
                 <ArrowLeftSquare /> Go Back to Upload
             </Link>
-            <div className='grid grid-cols-1 md:grid-cols-2 mt-5'> 
-
+            <div className='grid grid-cols-1 md:grid-cols-2 mt-5'>
+                <FileInfo file={ fileInfo } />
             </div>
         </div>
     )
