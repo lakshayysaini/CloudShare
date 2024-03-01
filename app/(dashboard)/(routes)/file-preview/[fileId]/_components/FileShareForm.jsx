@@ -38,6 +38,13 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
                         </button>
                     </div> : null
             }
+
+            <div className='border rounded-md w-full p-2 flex flex-col'>
+                <label className='text-[14px] text-gray-500'>Send File to Email</label>
+
+                <input type='text' className='border rounded-md bg-transparent p-2 mt-3 w-1/2' />
+
+            </div>
         </div>
     )
 }
