@@ -44,7 +44,7 @@ const FilePreview = ( { params } ) => {
             <Link href='/upload' className='flex gap-3'>
                 <ArrowLeftSquare /> Go to Upload
             </Link>
-            <div className='grid grid-cols-1 md:grid-cols-2 mt-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 mt-5 gap-5'>
                 <FileInfo file={ fileInfo } />
                 <FileShareForm
                     file={ fileInfo }
