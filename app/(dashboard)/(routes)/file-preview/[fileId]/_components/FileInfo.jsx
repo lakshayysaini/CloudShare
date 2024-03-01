@@ -10,7 +10,7 @@ const FileInfo = ( { file } ) => {
     }, [file] )
 
     return (
-        <div className='text-center border flex justify-center m- flex-col items-center p-2 rounded-md border-blue-200'>
+        <div className='text-center border flex justify-center m-4 flex-col items-center p-2 rounded-md border-blue-200'>
             <Image
                 src='/fileIcon.png'
                 width={ 200 }
