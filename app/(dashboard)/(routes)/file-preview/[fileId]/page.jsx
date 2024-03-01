@@ -6,15 +6,20 @@ import { app } from '@/firebaseConfig';
 import Link from 'next/link';
 import { ArrowLeftSquare } from 'lucide-react';
 import FileInfo from './_components/FileInfo';
+import FileShareForm from './_components/FileShareForm';
 
 const FilePreview = ( { params } ) => {
     const db = getFirestore( app );
 
     const [fileInfo, setFileInfo] = useState();
 
+    console.log( 'params', params )
+
+
     const getFileInfo = async () => {
         const docRef = doc( db, "uploadedFile", params?.fileId );
         const docSnap = await getDoc( docRef );
+        console.log( "docSnap", docSnap );
         if ( docSnap.exists() ) {
             console.log( "Document data:", docSnap.data() );
             setFileInfo( docSnap.data() );
@@ -24,17 +29,27 @@ const FilePreview = ( { params } ) => {
         }
     }
 
+    console.log( 'fileInfo', fileInfo )
+
     useEffect( () => {
         params?.fileId && getFileInfo()
-    }, [] )
+    }, [params?.fileId] )
+
+    const onPasswordSave = ( password ) => {
+
+    }
 
     return (
-        <div className='py-10 px-10'>
-            <Link href='/upload' className='glex-gap-3'>
-                <ArrowLeftSquare /> Go Back to Upload
+        <div className='py-10 px-20'>
+            <Link href='/upload' className='flex gap-3'>
+                <ArrowLeftSquare /> Go to Upload
             </Link>
             <div className='grid grid-cols-1 md:grid-cols-2 mt-5'>
                 <FileInfo file={ fileInfo } />
+                <FileShareForm
+                    file={ fileInfo }
+                    onPasswordSave={ ( password ) => onPasswordSave( password ) }
+                />
             </div>
         </div>
     )
