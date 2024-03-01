@@ -6,10 +6,10 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
     const [password, setPassword] = useState( '' );
 
     return file && (
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 w-3/4'>
             <div>
                 <label className='text-[14px] text-gray-500'>Short Url</label>
-                <div className='flex gap-5 p-2 border rounded-md justify-center'>
+                <div className='flex gap-5 p-2 border rounded-md justify-between text-left'>
                     <input type='text' value={ file.shortUrl } disabled
                         className='disabled:text-gray-500 bg-transparent' />
                     <Copy className='text-gray-400 hover:text-gray-600' />
@@ -18,13 +18,13 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
 
             <div className='gap-3 flex mt-5'>
                 <input type='checkbox' onChange={ ( e ) => setIsPasswordEnable( true ) } />
-                <label>Enable Password?</label>
+                <label className='text-[14px] text-gray-500'>Enable Password?</label>
             </div>
 
             {
                 isPasswordEnable ?
-                    <div className='flex gap-3 items-center'>
-                        <div className='border rounded-md w-full p-2'>
+                    <div className='flex gap-3 items-center justify-between'>
+                        <div className='border rounded-md p-2 w-full'>
                             <input type="password"
                                 className='disabled:text-gray-500 bg-transparent outline-none'
                                 onChange={ ( e ) => setPassword( e.target.value ) }
@@ -39,11 +39,14 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
                     </div> : null
             }
 
-            <div className='border rounded-md w-full p-2 flex flex-col'>
+            <div className='border rounded-md p-2 flex flex-col mt-5'>
                 <label className='text-[14px] text-gray-500'>Send File to Email</label>
 
-                <input type='text' className='border rounded-md bg-transparent p-2 mt-3 w-1/2' />
+                <input type='text' className='border rounded-md bg-transparent p-2 mt-3' />
 
+                <button className='bg-primary mt-2 rounded-md p-2 text-white'>
+                    Send Email
+                </button>
             </div>
         </div>
     )
