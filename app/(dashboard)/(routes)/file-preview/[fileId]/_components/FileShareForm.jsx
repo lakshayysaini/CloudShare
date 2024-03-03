@@ -1,9 +1,26 @@
 import React, { useState } from 'react'
 import { Copy, CopyIcon } from 'lucide-react';
+import GlobalApi from '@/app/_utils/GlobalApi';
+import { useUser } from '@clerk/nextjs';
 
 const FileShareForm = ( { file, onPasswordSave } ) => {
     const [isPasswordEnable, setIsPasswordEnable] = useState( false );
     const [password, setPassword] = useState( '' );
+    const { user } = useUser();
+
+    const sendEmail = () => {
+        const data = {
+            emailToSend: email,
+            userName: user?.fullName,
+            fileName: file.fileName,
+            fileSize: file.fileSize,
+            fileType: file.fileType,
+            shortUrl: file.ShortUrl,
+        }
+        GlobalApi.SendEmail( data ).then( resp => {
+            console.log( resp );
+        } )
+    };
 
     return file && (
         <div className='flex flex-col gap-2 w-3/4'>
@@ -44,7 +61,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
 
                 <input type='text' className='border rounded-md bg-transparent p-2 mt-3' />
 
-                <button className='bg-primary mt-2 rounded-md p-2 text-white'>
+                <button className='bg-primary mt-2 rounded-md p-2 text-white' onClick={ () => sendEmail() }>
                     Send Email
                 </button>
             </div>
