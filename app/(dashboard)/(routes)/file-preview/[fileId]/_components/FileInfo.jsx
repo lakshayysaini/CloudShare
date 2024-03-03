@@ -12,7 +12,7 @@ const FileInfo = ( { file } ) => {
     return (
         <div className='text-center border flex justify-center m-4 flex-col items-center p-2 rounded-md border-blue-200'>
             <Image
-                src='/fileIcon.png'
+                src={fileType=='image' ? file?.fileUrl : '/fileIcon.png'}
                 width={ 200 }
                 height={ 200 }
                 className='h-[200px] rounded-md object-contain'

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { app } from '@/firebaseConfig';
 import Link from 'next/link';
 import { ArrowLeftSquare } from 'lucide-react';
@@ -35,8 +35,12 @@ const FilePreview = ( { params } ) => {
         params?.fileId && getFileInfo()
     }, [params?.fileId] )
 
-    const onPasswordSave = ( password ) => {
-
+    const onPasswordSave = async ( password ) => {
+        const docRef = doc( db, "uploadedFile", params?.fileId );
+        await updateDoc( docRef, {
+            password: password
+        } );
+        
     }
 
     return (

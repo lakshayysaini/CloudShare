@@ -34,7 +34,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
                             disabled={ password?.length < 3 }
                             onClick={ () => onPasswordSave( password ) }
                         >
-                            Save
+                            Login
                         </button>
                     </div> : null
             }
