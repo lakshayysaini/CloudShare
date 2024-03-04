@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
-import { app } from '@/firebaseConfig';
+import { app } from '../../../../../firebaseConfig';
 import Link from 'next/link';
 import { ArrowLeftSquare } from 'lucide-react';
 import FileInfo from './_components/FileInfo';

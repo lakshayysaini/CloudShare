@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Copy, CopyIcon } from 'lucide-react';
-import GlobalApi from '@/app/_utils/GlobalApi';
+import GlobalApi from '../../../../../_utils/GlobalApi';
 import { useUser } from '@clerk/nextjs';
 
 const FileShareForm = ( { file, onPasswordSave } ) => {
     const [isPasswordEnable, setIsPasswordEnable] = useState( false );
     const [password, setPassword] = useState( '' );
+    const [email, setEmail] = useState();
     const { user } = useUser();
 
     const sendEmail = () => {
@@ -17,7 +18,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
             fileType: file.fileType,
             shortUrl: file.ShortUrl,
         }
-        GlobalApi.SendEmail( data ).then( resp => {
+        GlobalApi.SendEmail(data).then( resp => {
             console.log( resp );
         } )
     };

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const SendEmail = (data) => axios.post('/api/send', data)
 

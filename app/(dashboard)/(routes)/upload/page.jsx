@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import UploadForm from './_components/UploadForm';
-import { app } from '@/firebaseConfig';
+import { app } from '../../../../firebaseConfig';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useUser } from '@clerk/nextjs';
-import { generateRandomString } from '@/app/_utils/GenerateRandomString';
+import { generateRandomString } from '../../../_utils/GenerateRandomString';
 import { useRouter } from 'next/navigation';
 
 const Upload = () => {
