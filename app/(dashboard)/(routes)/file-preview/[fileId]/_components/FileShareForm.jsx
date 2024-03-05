@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Copy, CopyIcon } from 'lucide-react';
 import GlobalApi from '../../../../../_utils/GlobalApi';
 import { useUser } from '@clerk/nextjs';
+import UploadSucess from './UploadSucess';
 
 const FileShareForm = ( { file, onPasswordSave } ) => {
     const [isPasswordEnable, setIsPasswordEnable] = useState( false );
     const [password, setPassword] = useState( '' );
+    const [isRemovealert, setIsRemoveAlert] = useState( false );
     const [email, setEmail] = useState();
     const { user } = useUser();
 
@@ -23,18 +25,34 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
         } )
     };
 
+    const onCopy = () => {
+        navigator.clipboard.writeText( file.shortUrl );
+        setIsRemoveAlert( true );
+    };
+
+    const removeAlert = ( e ) => {
+        e.preventDefault();
+        setIsRemoveAlert( false );
+    }
+
     return file && (
         <div className='flex flex-col gap-2 w-3/4'>
-            <div>
-                <label className='text-[14px] text-gray-500'>Short Url</label>
-                <div className='flex gap-5 p-2 border rounded-md justify-between text-left'>
-                    <input type='text' value={ file.shortUrl } disabled
-                        className='disabled:text-gray-500 bg-transparent' />
-                    <Copy className='text-gray-400 hover:text-gray-600' />
-                </div>
-            </div>
 
-            <div className='gap-3 flex mt-5'>
+            {
+                isRemovealert ?
+                    <UploadSucess heading="Copied Successful" removeAlert={ removeAlert } />
+                    :
+                    <div>
+                        <label className='text-[14px] text-gray-500'>Short Url</label>
+                        <div className='flex gap-5 p-2 border rounded-md justify-between items-center text-left'>
+                            <input type='text' value={ file.shortUrl } disabled
+                                className='disabled:text-gray-500 rounded-full bg-transparent border-none' />
+                            <Copy className='text-gray-400 hover:text-gray-600' onClick={ onCopy } />
+                        </div>
+                    </div>
+            }
+
+            <div className='gap-3 flex mt-1'>
                 <input type='checkbox' onChange={ ( e ) => setIsPasswordEnable( true ) } />
                 <label className='text-[14px] text-gray-500'>Enable Password?</label>
             </div>
@@ -44,7 +62,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
                     <div className='flex gap-3 items-center justify-between'>
                         <div className='border rounded-md p-2 w-full'>
                             <input type="password"
-                                className='disabled:text-gray-500 bg-transparent outline-none'
+                                className='disabled:text-gray-500 bg-transparent border-none'
                                 onChange={ ( e ) => setPassword( e.target.value ) }
                             />
                         </div>
