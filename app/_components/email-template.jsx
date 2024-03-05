@@ -61,7 +61,7 @@ export const EmailTemplate = ( { response } ) => {
                 </Text>
 
                 <Text style={ { ...paragraph, marginTop: -5 } }>
-                  <b>File Size: { response.fileSize }</b>
+                  <b>File Size: { Math.round( response.fileSize / 1048576 ) } MB</b>
                 </Text>
 
                 <Text style={ { ...paragraph, marginTop: -5 } }>
@@ -72,7 +72,7 @@ export const EmailTemplate = ( { response } ) => {
             </Row>
             <Row style={ { ...boxInfos, paddingTop: "0" } }>
               <Column style={ containerButton } colSpan={ 2 }>
-                <Button style={ button } href={response?.shortUrl} >Click Here to Download</Button>
+                <Button style={ button } href={ response?.shortUrl } >Click Here to Download</Button>
               </Column>
             </Row>
           </Section>

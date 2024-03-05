@@ -28,7 +28,7 @@ const FileView = ( { params } ) => {
     }, [params?.fileId] )
 
     return (
-        <div className='bg-gray-100 h-screen w-full flex justify-center items-center flex-col gap-4'>
+        <div className='bg-gray-100 h-screen w-full flex justify-center items-center flex-col'>
             <FileItem fileInfo={ fileInfo } />
         </div>
     )

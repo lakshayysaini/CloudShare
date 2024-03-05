@@ -8,7 +8,7 @@ const FileItem = ( { fileInfo } ) => {
 
   return (
     <article
-      className="w-1/3 hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+      className="w-1/4 hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
     >
       <div
         className="relative rounded-xl bg-gray-100 px-4 py-8 sm:px-6 lg:px-8"
@@ -16,36 +16,47 @@ const FileItem = ( { fileInfo } ) => {
         role="dialog"
         tabIndex="-1"
       >
-        <div className=" flex flex-col items-center mt-2 space-y-6 text-center ">
-          <h1 className='text-2xl semibold'><span className='text-primary'>{ fileInfo?.userName }</span> Shared the File For You.</h1>
-          <h1 className='text-sm text-gray-600'>Find File Details Below.</h1>
+        <div className=" flex flex-col items-center mt-2 space-y-3 text-center ">
+          <h1 className='text-xl semibold'><span className='text-primary'>{ fileInfo?.userName }</span> Shared the File For You</h1>
+
+          <h1 className='text-sm text-gray-600 mt-2'>Find File Details Below.</h1>
+
           <Lottie
             animationData={ animationData }
             style={ { width: '200px', height: '200px' } }
-            loop = {true}
+            loop={ true }
           />
-          <div className="space-y-4 text-center">
-            <a
-              href="#"
-              className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
-            >
-              View my cart (2)
-            </a>
 
-            <a
-              href="#"
-              className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
-            >
-              Checkout
-            </a>
+          <h1 className='text-sm text-gray-600'>File Size is of { Math.round( fileInfo?.fileSize / 1048576 ) } MB</h1>
 
-            <a
-              href="#"
-              className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+          <label
+            htmlFor="password"
+            className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+          >
+            <input
+              type="password"
+              id="password"
+              className="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+              placeholder="password"
+            />
+
+            <span
+              className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-gray-100 p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs"
             >
-              Continue shopping
-            </a>
-          </div>
+              Password
+            </span>
+          </label>
+
+          <a
+            className="group inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white active:text-opacity-75"
+            href="#"
+          >
+            <span
+              className="block rounded-full bg-white px-8 py-3 text-sm font-medium group-hover:bg-transparent"
+            >
+              Download
+            </span>
+          </a>
         </div>
       </div>
     </article>
