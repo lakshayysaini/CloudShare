@@ -16,9 +16,9 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
             fileName: file.fileName,
             fileSize: file.fileSize,
             fileType: file.fileType,
-            shortUrl: file.ShortUrl,
+            shortUrl: file.shortUrl,
         }
-        GlobalApi.SendEmail(data).then( resp => {
+        GlobalApi.SendEmail( data ).then( resp => {
             console.log( resp );
         } )
     };
@@ -60,7 +60,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
             <div className='border rounded-md p-2 flex flex-col mt-5'>
                 <label className='text-[14px] text-gray-500'>Send File to Email</label>
 
-                <input type='text' className='border rounded-md bg-transparent p-2 mt-3' />
+                <input type='text' className='border rounded-md bg-transparent p-2 mt-3' onChange={ ( e ) => setEmail( e.target.value ) } />
 
                 <button className='bg-primary mt-2 rounded-md p-2 text-white' onClick={ () => sendEmail() }>
                     Send Email

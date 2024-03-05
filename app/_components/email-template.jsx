@@ -1,101 +1,96 @@
 import * as React from 'react';
+import {
+  Body,
+  Button,
+  Container,
+  Column,
+  Head,
+  Heading,
+  Html,
+  Img,
+  Preview,
+  Row,
+  Section,
+  Text,
+} from "@react-email/components";
 
-export const EmailTemplate = ({
-  firstName,
-}) => (
-  <Html>
+export const EmailTemplate = ( { response } ) => {
+  return (
+    <Html>
       <Head />
       <Preview>Yelp recent login</Preview>
-      <Body style={main}>
+      <Body style={ main }>
         <Container>
-          <Section style={logo}>
+          <Section style={ logo }>
             <Img src='/CloudShare.png' />
           </Section>
 
-          <Section style={content}>
+          <Section style={ content }>
             <Row>
               <Img
-                style={image}
-                width={620}
+                style={ image }
+                width={ 620 }
                 src='/CloudShare.png'
               />
             </Row>
 
-            <Row style={{ ...boxInfos, paddingBottom: "0" }}>
+            <Row style={ { ...boxInfos, paddingBottom: "0" } }>
               <Column>
                 <Heading
-                  style={{
+                  style={ {
                     fontSize: 32,
                     fontWeight: "bold",
                     textAlign: "center",
-                  }}
+                  } }
                 >
-                  Hi {userFirstName},
+                  Hi { response.emailToSend.split( "@" )[0] },
                 </Heading>
                 <Heading
                   as="h2"
-                  style={{
+                  style={ {
                     fontSize: 26,
                     fontWeight: "bold",
                     textAlign: "center",
-                  }}
+                  } }
                 >
                   We noticed a recent login to your Yelp account.
                 </Heading>
 
-                <Text style={paragraph}>
-                  <b>Time: </b>
-                  {formattedDate}
-                </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  <b>Device: </b>
-                  {loginDevice}
-                </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  <b>Location: </b>
-                  {loginLocation}
-                </Text>
-                <Text
-                  style={{
-                    color: "rgb(0,0,0, 0.5)",
-                    fontSize: 14,
-                    marginTop: -5,
-                  }}
-                >
-                  *Approximate geographic location based on IP address:
-                  {loginIp}
+                <Text style={ paragraph }>
+                  <b>File Name: { response.fileName }</b>
                 </Text>
 
-                <Text style={paragraph}>
-                  If this was you, there's nothing else you need to do.
+                <Text style={ { ...paragraph, marginTop: -5 } }>
+                  <b>File Size: { response.fileSize }</b>
                 </Text>
-                <Text style={{ ...paragraph, marginTop: -5 }}>
-                  If this wasn't you or if you have additional questions, please
-                  see our support page.
+
+                <Text style={ { ...paragraph, marginTop: -5 } }>
+                  <b>File Type: { response.fileType }</b>
                 </Text>
+
               </Column>
             </Row>
-            <Row style={{ ...boxInfos, paddingTop: "0" }}>
-              <Column style={containerButton} colSpan={2}>
-                <Button style={button}>Learn More</Button>
+            <Row style={ { ...boxInfos, paddingTop: "0" } }>
+              <Column style={ containerButton } colSpan={ 2 }>
+                <Button style={ button } href={response?.shortUrl} >Click Here to Download</Button>
               </Column>
             </Row>
           </Section>
 
-          <Section style={containerImageFooter}>
+          <Section style={ containerImageFooter }>
             <Img
-              style={image}
-              width={620}
-              src={`${baseUrl}/static/yelp-footer.png`}
+              style={ image }
+              width={ 620 }
+              src='/CloudShare.png'
             />
           </Section>
 
           <Text
-            style={{
+            style={ {
               textAlign: "center",
               fontSize: 12,
               color: "rgb(0,0,0, 0.7)",
-            }}
+            } }
           >
             © 2022 | Yelp Inc., 350 Mission Street, San Francisco, CA 94105,
             U.S.A. | www.yelp.com
@@ -103,7 +98,8 @@ export const EmailTemplate = ({
         </Container>
       </Body>
     </Html>
-);
+  )
+};
 
 
 const main = {
