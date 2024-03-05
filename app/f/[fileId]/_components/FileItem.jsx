@@ -1,4 +1,6 @@
 import React from 'react'
+import Lottie from "lottie-react";
+import animationData from '../../../../public/animation/Animation - 1709657150453.json';
 
 const FileItem = ( { fileInfo } ) => {
 
@@ -14,10 +16,14 @@ const FileItem = ( { fileInfo } ) => {
         role="dialog"
         tabIndex="-1"
       >
-        <div className="mt-4 space-y-6 text-center">
-          <h1 className='text-2xl semibold'><span className='text-primary'>{ fileInfo.userName }</span> Shared the File For You.</h1>
+        <div className=" flex flex-col items-center mt-2 space-y-6 text-center ">
+          <h1 className='text-2xl semibold'><span className='text-primary'>{ fileInfo?.userName }</span> Shared the File For You.</h1>
           <h1 className='text-sm text-gray-600'>Find File Details Below.</h1>
-
+          <Lottie
+            animationData={ animationData }
+            style={ { width: '200px', height: '200px' } }
+            loop = {true}
+          />
           <div className="space-y-4 text-center">
             <a
               href="#"
