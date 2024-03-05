@@ -15,10 +15,6 @@ import {
 } from "@react-email/components";
 
 export const EmailTemplate = ( { response } ) => {
-  const handleDownload = () => {
-    window.open( response.shortUrl, '_blank' );
-  };
-
   return (
     <Html>
       <Head />
@@ -76,7 +72,7 @@ export const EmailTemplate = ( { response } ) => {
             </Row>
             <Row style={ { ...boxInfos, paddingTop: "0" } }>
               <Column style={ containerButton } colSpan={ 2 }>
-                <Button style={ button } onClick={handleDownload} >Click Here to Download</Button>
+                <Button style={ button } href={response?.shortUrl} >Click Here to Download</Button>
               </Column>
             </Row>
           </Section>
