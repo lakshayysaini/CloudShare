@@ -21,7 +21,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
             shortUrl: file.shortUrl,
         }
         GlobalApi.SendEmail( data ).then( resp => {
-            console.log( resp );
+            //console.log( resp );
         } )
     };
 
