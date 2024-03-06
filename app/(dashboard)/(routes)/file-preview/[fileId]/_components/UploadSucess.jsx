@@ -2,7 +2,7 @@ import React from 'react'
 
 const UploadSucess = ( { heading, removeAlert } ) => {
     return (
-        <div role="alert" className="rounded-xl border-2 border-gray-200 bg-white p-4 w-fit animate-delay-1000 animate-bounce absolute">
+        <div role="alert" className="rounded-xl border-2 border-gray-200 bg-white p-4 w-fit animate-delay-1000 animate-bounce absolute top-10">
             <div className="flex items-center gap-4">
                 <span className="text-green-600">
                     <svg
