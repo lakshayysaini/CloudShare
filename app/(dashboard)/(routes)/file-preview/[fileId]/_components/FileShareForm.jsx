@@ -21,7 +21,7 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
             shortUrl: file.shortUrl,
         }
         GlobalApi.SendEmail( data ).then( resp => {
-            //console.log( resp );
+            console.log( resp );
         } )
     };
 
@@ -38,18 +38,19 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
     return file && (
         <div className='flex flex-col gap-2 w-3/4'>
 
+            <div>
+                <label className='text-[14px] text-gray-500'>Short Url</label>
+                <div className='flex gap-5 p-2 border rounded-md justify-between items-center text-left'>
+                    <input type='text' value={ file.shortUrl } disabled
+                        className='disabled:text-gray-500 rounded-full bg-transparent border-none' />
+                    <Copy className='text-gray-400 hover:text-gray-600' onClick={ onCopy } />
+                </div>
+            </div>
+
             {
                 isRemovealert ?
                     <UploadSucess heading="Copied Successful" removeAlert={ removeAlert } />
-                    :
-                    <div>
-                        <label className='text-[14px] text-gray-500'>Short Url</label>
-                        <div className='flex gap-5 p-2 border rounded-md justify-between items-center text-left'>
-                            <input type='text' value={ file.shortUrl } disabled
-                                className='disabled:text-gray-500 rounded-full bg-transparent border-none' />
-                            <Copy className='text-gray-400 hover:text-gray-600' onClick={ onCopy } />
-                        </div>
-                    </div>
+                    : null
             }
 
             <div className='gap-3 flex mt-1'>
