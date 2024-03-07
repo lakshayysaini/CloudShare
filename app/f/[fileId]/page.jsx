@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { app } from '../../../firebaseConfig';
 import FileItem from './_components/FileItem';
+import Image from 'next/image';
 
 const FileView = ( { params } ) => {
 
@@ -28,7 +29,8 @@ const FileView = ( { params } ) => {
     }, [params?.fileId] )
 
     return (
-        <div className='bg-gray-100 h-screen w-full flex justify-center items-center flex-col'>
+        <div className='bg-gray-100 h-screen w-full flex justify-center items-center flex-col gap-10'>
+            <Image src='/CloudShare.png' width={ 140 } height={ 70 } />
             <FileItem fileInfo={ fileInfo } />
         </div>
     )

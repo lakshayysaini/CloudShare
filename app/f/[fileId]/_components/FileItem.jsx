@@ -31,7 +31,7 @@ const FileItem = ( { fileInfo } ) => {
         tabIndex="-1"
       >
         <div className=" flex flex-col items-center mt-2 space-y-3 text-center ">
-          <h1 className='text-xl semibold'><span className='text-primary'>{ fileInfo?.userName }</span> Shared the File For You</h1>
+          <h1 className='text-xl semibold'><span className='text-primary'>{ fileInfo?.userName }</span> Shared a File.</h1>
 
           <h1 className='text-sm text-gray-600 mt-2'>Find File Details Below.</h1>
 
