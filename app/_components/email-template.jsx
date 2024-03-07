@@ -22,18 +22,10 @@ export const EmailTemplate = ( { response } ) => {
       <Body style={ main }>
         <Container>
           <Section style={ logo }>
-            <Img src='/CloudShare.png' />
+            <Img src='https://i.ibb.co/tbHkdcG/Cloud-Share.png' />
           </Section>
 
           <Section style={ content }>
-            <Row>
-              <Img
-                style={ image }
-                width={ 620 }
-                src='/CloudShare.png'
-              />
-            </Row>
-
             <Row style={ { ...boxInfos, paddingBottom: "0" } }>
               <Column>
                 <Heading
@@ -53,7 +45,7 @@ export const EmailTemplate = ( { response } ) => {
                     textAlign: "center",
                   } }
                 >
-                  We noticed a recent login to your Yelp account.
+                  I have a file for you.
                 </Heading>
 
                 <Text style={ paragraph }>
@@ -77,23 +69,14 @@ export const EmailTemplate = ( { response } ) => {
             </Row>
           </Section>
 
-          <Section style={ containerImageFooter }>
-            <Img
-              style={ image }
-              width={ 620 }
-              src='/CloudShare.png'
-            />
-          </Section>
-
           <Text
             style={ {
               textAlign: "center",
-              fontSize: 12,
+              fontSize: 14,
               color: "rgb(0,0,0, 0.7)",
             } }
           >
-            © 2022 | Yelp Inc., 350 Mission Street, San Francisco, CA 94105,
-            U.S.A. | www.yelp.com
+            © 2024| Cloud Share by lakshayysaini
           </Text>
         </Container>
       </Body>

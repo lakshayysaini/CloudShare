@@ -41,20 +41,51 @@ const Upload = () => {
     const imageRef = ref( storage, 'file-upload/' + file?.name );
     const uploadTask = uploadBytesResumable( imageRef, file, file.type );
 
+    //uploadTask.on( 'state_changed',
+    //  ( snapshot ) => {
+    //    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    //    const progressPercentage = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+    //    setProgress( Math.round( progressPercentage ) );
+    //    console.log( 'Upload is ' + progressPercentage + '% done' );
+
+    //    progressPercentage === 100 && getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
+    //      console.log( 'File available at', downloadURL );
+    //      saveInfo( file, downloadURL );
+    //    } );
+
+    //    progressPercentage == 100 && setUploadCompleted( true )
+    //  } )
     uploadTask.on( 'state_changed',
       ( snapshot ) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progressPercentage = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
-        setProgress( Math.round( progressPercentage ) );
-        console.log( 'Upload is ' + progressPercentage + '% done' );
-
-        progressPercentage === 100 && getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
+        const progress = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+        //progress == 100 && setUploadCompleted( true )
+        setProgress( Math.round( progress ) );
+        console.log( 'Upload is ' + progress + '% done' );
+        //switch ( snapshot.state ) {
+        //  case 'paused':
+        //    console.log( 'Upload is paused' );
+        //    break;
+        //  case 'running':
+        //    console.log( 'Upload is running' );
+        //    break;
+        //}
+      },
+      ( error ) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
+          if ( downloadURL ) {
+            saveInfo( file, downloadURL );
+            setUploadCompleted( true )
+          }
           console.log( 'File available at', downloadURL );
-          saveInfo( file, downloadURL );
         } );
-
-        progressPercentage == 100 && setUploadCompleted( true )
-      } )
+      }
+    );
   }
 
   useEffect( () => {
