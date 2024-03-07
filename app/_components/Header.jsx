@@ -14,7 +14,7 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>*/}
-            <Image src='/CloudShare.png' width={ 125 } height={ 50 } />
+            <Image src='/CloudShare.png' href='#' width={ 125 } height={ 50 } />
           </a>
 
           <div className="flex flex-1 items-center justify-end md:justify-between">
@@ -25,7 +25,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Upload </a>
+                  <a className="text-gray-500 transition hover:text-gray-500/75" href="/upload"> Upload </a>
                 </li>
 
                 <li>
@@ -42,7 +42,7 @@ const Header = () => {
               <div className="sm:flex sm:gap-4">
                 <a
                   className="block rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                  href="/files"
+                  href="/upload"
                 >
                   Get Started
                 </a>
