@@ -92,7 +92,7 @@ const Upload = () => {
     if ( uploadCompleted ) {
       setTimeout( () => {
         router.push( '/file-preview/' + documentId );
-      }, 5000 );
+      }, 3000 );
     }
   }, [uploadCompleted, documentId] );
 

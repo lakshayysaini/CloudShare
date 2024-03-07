@@ -71,13 +71,13 @@ const FileShareForm = ( { file, onPasswordSave } ) => {
                             disabled={ password?.length < 3 }
                             onClick={ () => onPasswordSave( password ) }
                         >
-                            Login
+                            Save
                         </button>
                     </div> : null
             }
 
             <div className='border rounded-md p-2 flex flex-col mt-5'>
-                <label className='text-[14px] text-gray-500'>Send File to Email</label>
+                <label className='text-[14px] text-gray-500'>Send File to Email <br /> (we don't have a paid account right now so you can send email to <span className='text-primary'> lakshayandsaini@gmail.com</span> only)</label>
 
                 <input type='text' className='border rounded-md bg-transparent p-2 mt-3' onChange={ ( e ) => setEmail( e.target.value ) } />
 
