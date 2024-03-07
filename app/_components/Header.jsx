@@ -30,10 +30,20 @@ const Header = () => {
 
                 <li>
                   <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> About Us </a>
+                  <span
+                    className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700"
+                  >
+                    <p className="whitespace-nowrap text-sm">coming soon</p>
+                  </span>
                 </li>
 
                 <li>
                   <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact Us </a>
+                  <span
+                    className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700"
+                  >
+                    <p className="whitespace-nowrap text-sm">coming soon</p>
+                  </span>
                 </li>
               </ul>
             </nav>
