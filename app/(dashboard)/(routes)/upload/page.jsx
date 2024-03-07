@@ -61,7 +61,7 @@ const Upload = () => {
         const progress = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
         //progress == 100 && setUploadCompleted( true )
         setProgress( Math.round( progress ) );
-        console.log( 'Upload is ' + progress + '% done' );
+        //console.log( 'Upload is ' + progress + '% done' );
         //switch ( snapshot.state ) {
         //  case 'paused':
         //    console.log( 'Upload is paused' );
@@ -82,7 +82,7 @@ const Upload = () => {
             saveInfo( file, downloadURL );
             setUploadCompleted( true )
           }
-          console.log( 'File available at', downloadURL );
+          //console.log( 'File available at', downloadURL );
         } );
       }
     );

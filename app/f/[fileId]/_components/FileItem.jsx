@@ -8,7 +8,7 @@ const FileItem = ( { fileInfo } ) => {
 
   const [password, setPassword] = useState( '' );
 
-  console.log( 'fileInfo', fileInfo );
+  //console.log( 'fileInfo', fileInfo );
 
   const handleDownload = () => {
     const url = fileInfo.fileUrl;

@@ -9,7 +9,7 @@ export async function POST(req) {
   try {
     const data = await resend.emails.send({
       from: "CloudShare@resend.dev",
-      to: response?.emailToSend,
+      to: 'lakshayandsaini@gmai',
       subject: response?.userName + " shared file with you",
       react: EmailTemplate({ response }),
     });
