@@ -20,8 +20,7 @@ function SideNav( { closeSideBar } ) {
             id: 2,
             name: 'Files',
             icon: File,
-            path: '',
-            subheading: 'Coming Soon'
+            path: '/files',
         },
         {
             id: 3,
